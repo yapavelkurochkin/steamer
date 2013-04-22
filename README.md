@@ -9,5 +9,6 @@
 
  Currently this project is described only in Russian.
 
- More information: http://metrotek.spb.ru/steamer.html
-
+ More information is present on official site http://metrotek.spb.ru/steamer.html
+ and on the https://github.com/yapavelkurochkin/steamer/wiki
+ 
