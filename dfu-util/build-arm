@@ -1,0 +1,34 @@
+#!/bin/sh
+
+make distclean
+./autogen.sh
+source /usr/local/angstrom/arm/environment-setup
+./configure --build=i686-linux --host=arm-angstrom-linux-gnueabi \
+            --target=arm-angstrom-linux-gnueabi
+sed -i 's/#define malloc rpl_malloc//' config.h
+sed -i 's/dfu_util_static_LDFLAGS = \-static/dfu_util_static_LDFLAGS = /' \
+  src/Makefile
+make
+
+IPK_TMP_DIR=tmp
+IPK_CONTROL_DIR=${IPK_TMP_DIR}/CONTROL
+IPK_CONTROL=${IPK_CONTROL_DIR}/control
+IPKGBUILD=/files/b4/ipkg-utils/ipkg-build
+VERSION=`head -n 1 ChangeLog | awk '{print $2}'| sed 's/[()]//g'`
+DEST_PATH=usr/bin
+
+rm -f *.ipk
+rm -rf ${IPK_TMP_DIR}
+
+install -d -m 755 ${IPK_CONTROL_DIR}
+
+install -m 0644 control.tpl ${IPK_CONTROL_DIR}/control
+sed -i "s/@@VERSION@@/${VERSION}/g" ${IPK_CONTROL_DIR}/control
+
+mkdir -p ${IPK_TMP_DIR}/${DEST_PATH} 
+install -m 0755 src/dfu-util ${IPK_TMP_DIR}/${DEST_PATH}/
+
+cd ${IPK_TMP_DIR}; ${IPKGBUILD} -o root -g root . ../
+
+rm -rf ${IPK_TMP_DIR}
+

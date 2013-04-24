@@ -1,0 +1,68 @@
+\input texinfo
+@c %**start of header 
+@setfilename readme.texi
+@c %**end of header 
+
+
+@chapter dfu-util - firmware upgrade utility for Stm32f10[5|7] family of processors
+
+@contents
+
+dfu-util - firmware upgrade utility for Stm32f10[5|7] processors.
+This is a fork of dfu-util from Open Moko project
+
+
+@section SYNOPSIS
+
+dfu-util [-l|-D filename] [-X] [-d vid:pid] [-V] [-h] [-o offset] [-e]
+
+For listing of available devices use: dfu-util -l
+
+For flashing use: dfu-util -D filename [-X] [-d vid:pid] [-o offset] [-e]
+
+For help use: dfu-util [-h]
+ 
+
+@section DESCRIPTION
+
+dfu-util is used for access to flash/ram/option bytes of Stm32 processors, by interfacing stm32 bootloader via modified USB-DFU protocol.
+
+This utility was started as a fork of dfu-util from openmoko project for the reason of big differences in standart dfu protocol and it's implementation by stm32
+
+@subsection Parameters
+@itemize @bullet
+@item -D filename - sets the filename for firmware (binary image, not ELF)
+@item -h - gives useage help
+@item -V - gives version and exits
+@item -l - list available devices
+@item -e - erase flash (stm32 specific)
+@item -o address - download offset (0x20001000 for RAM, 0x08000000 for flash, default offset = 0x08000000)
+@item -X - execute firmare after download?
+@item -d vid:pid - specifies device for programming (experimental)
+@end itemize
+
+@section BUILD 
+
+@subsection BUILD REQUIREMENTS
+@itemize @bullet
+@item make
+@item gcc
+@item libusb-0.1
+@item automake
+@end itemize
+
+
+@section INSTALLATION
+
+Classic :)  ( ./autogen.sh&&./configure&&make&& sudo make install)
+
+
+@section AUTHORS
+@itemize @bullet
+@item Nikolaj Zamotaev
+@end itemize
+
+@copyright{}  STC-Metrotek, 2010-2011
+
+@bye
+

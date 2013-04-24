@@ -1,0 +1,127 @@
+dfu-util (0.4-1) unstable; urgency=low
+  2011/02/09
+    ! build-arm: пофикшены права на dfu-util. теперь запускается [yl]
+
+dfu-util (0.4) unstable; urgency=low
+  2011/01/14
+    * src/main.[ch],src/stm32dfu.[ch]: Добавлен ключ стирания flash (-e),
+                                       Незначительный рефакторинг [fhunter]
+    + src/param.h: Параметры сведены в структуру. [fhunter]
+
+dfu-util (0.3) unstable; urgency=low
+  2010/12/02
+    + build-arm build-x86: добавлены скрипты для автоматизации процессов сборки
+      dfu-util под arm и под x86 [vi]
+
+  2010/11/12
+   * new release. main change is 
+     the algorithm which waits until DFU bootloader come up
+     in the system [pk]
+
+ -- Pavel Kurochkin <pk@metrotek.spb.ru>  Fri, 12 Nov 2010 14:38:11 +0300
+
+dfu-util (0.2) unstable; urgency=low
+
+ 2010/08/06
+    * src/: произведено слияние папки
+      svn://srv/b5/trunk/cards/dfu_test/flashul/src c папкой src при помощи
+      команды 
+      svn merge svn://srv/b5/trunk/stm32/dfu-util/src@27369
+      svn://srv/trunk/cards/dfu_test/flashul/src@27478, выполненной в папке
+      src                                           [vi]
+
+dfu-util (0.1) unstable; urgency=low
+
+ 2010/07/30
+    ! src/: произведён откат к ревизии 25688     [vi]
+
+ 2010/07/27
+    * src/: случайно произведён commit над изменениями, предназначенными
+      на самом деле для svn://srv/b5/trunk/cards/dfu_test/dfu_device/src [vi] 
+
+2010-03-17 14:01  fhunter
+
+	* readme.texi: finished writing readme file
+
+2010-03-17 13:56  fhunter
+
+	* src/main.c, src/main.h, src/stm32dfu.c, src/stm32dfu.h: Removed
+	  unusable/unneeded code (upload, extra configuration, etc).
+	  Now it only downloads firmware into controller.
+
+2010-03-16 13:22  fhunter
+
+	* src/main.c, src/main.h, src/stm32dfu.c, src/stm32dfu.h: Changed
+	  error messages. Fixed support for --offset parameter.
+	  Simplified code in main.c
+
+2010-03-15 15:02  fhunter
+
+	* readme.texi, src/main.c, src/main.h, src/stm32dfu.c: Added
+	  aditional options (execute, erase, erase all, read unprotect).
+	  Indented code.
+
+2010-03-15 13:53  fhunter
+
+	* src/stm32dfu.c, src/stm32dfu.h: Considered function in_array, to
+	  be usefull enough to make it public
+
+2010-03-15 13:33  fhunter
+
+	* src/main.c, src/main.h: Split main.c into main.c and main.h (for
+	  easier handling)
+
+2010-03-15 13:23  fhunter
+
+	* makereadme.sh: Added README generator from readme.texi
+
+2010-03-15 13:22  fhunter
+
+	* src/commands.c, src/commands.h: Removed extra unused files
+
+2010-03-15 13:22  fhunter
+
+	* src/dfu.c: Fixed transfer for the DFU_UPLOAD request
+
+2010-03-15 12:24  fhunter
+
+	* src/stm32dfu.c, src/stm32dfu.h: Added templates for all supported
+	  bootloader commands
+
+2010-03-15 12:23  fhunter
+
+	* src/Makefile.am, src/main.c, src/sam7dfu.c, src/sam7dfu.h:
+	  removed support for sam7 - converting program into stm32 firmware
+	  uploader
+
+2010-03-15 10:26  fhunter
+
+	* src/main.c, src/stm32dfu.c: Added autodetection of Stm32
+	  controller (now by vendor id - am I wrong?).
+	  Cleaned up code for downloading firmware. Removed gotos from
+	  functions.
+
+2010-03-12 14:46  fhunter
+
+	* src/stm32dfu.c: Added waiting for status
+
+2010-03-12 12:07  fhunter
+
+	* src/Makefile.am, src/dfu.c, src/main.c, src/stm32dfu.c,
+	  src/stm32dfu.h: Added initial support for the Stm32f10[5|7]
+	  family of processors.
+	  Initial means:
+	  * only download, upload doesn't work.
+	  * option bytes are unaccesible.
+	  * no support for programming RAM.
+	  * no support for downloading programs to addresses different from
+	  0x08000000
+
+2010-03-11 12:36  fhunter
+
+	* ., COPYING, Makefile.am, autogen.sh, configure.ac, doc,
+	  doc/dfu-util.1, m4, m4/depcomp, m4/install-sh, m4/missing, src,
+	  src/Makefile.am, src/commands.c, src/commands.h, src/dfu.c,
+	  src/dfu.h, src/main.c, src/sam7dfu.c, src/sam7dfu.h,
+	  src/usb_dfu.h: initial version of dfu-util
+

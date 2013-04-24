@@ -1,0 +1,89 @@
+1 dfu-util - firmware upgrade utility for Stm32f10[5|7] family of processors
+****************************************************************************
+
+Table of Contents
+*****************
+
+1 dfu-util - firmware upgrade utility for Stm32f10[5|7] family of processors
+  1.1 SYNOPSIS
+  1.2 DESCRIPTION
+    1.2.1 Parameters
+  1.3 BUILD
+    1.3.1 BUILD REQUIREMENTS
+  1.4 INSTALLATION
+  1.5 AUTHORS
+
+
+dfu-util - firmware upgrade utility for Stm32f10[5|7] processors.  This
+is a fork of dfu-util from Open Moko project
+
+1.1 SYNOPSIS
+============
+
+dfu-util [-l|-D filename] [-X] [-d vid:pid] [-V] [-h] [-o offset] [-e]
+
+   For listing of available devices use: dfu-util -l
+
+   For flashing use: dfu-util -D filename [-X] [-d vid:pid] [-o offset]
+[-e]
+
+   For help use: dfu-util [-h]
+
+1.2 DESCRIPTION
+===============
+
+dfu-util is used for access to flash/ram/option bytes of Stm32
+processors, by interfacing stm32 bootloader via modified USB-DFU
+protocol.
+
+   This utility was started as a fork of dfu-util from openmoko project
+for the reason of big differences in standart dfu protocol and it's
+implementation by stm32
+
+1.2.1 Parameters
+----------------
+
+   * -D filename - sets the filename for firmware (binary image, not
+     ELF)
+
+   * -h - gives useage help
+
+   * -V - gives version and exits
+
+   * -l - list available devices
+
+   * -e - erase flash (stm32 specific)
+
+   * -o address - download offset (0x20001000 for RAM, 0x08000000 for
+     flash, default offset = 0x08000000)
+
+   * -X - execute firmare after download?
+
+   * -d vid:pid - specifies device for programming (experimental)
+
+1.3 BUILD
+=========
+
+1.3.1 BUILD REQUIREMENTS
+------------------------
+
+   * make
+
+   * gcc
+
+   * libusb-0.1
+
+   * automake
+
+1.4 INSTALLATION
+================
+
+Classic :)  ( ./autogen.sh&&./configure&&make&& sudo make install)
+
+1.5 AUTHORS
+===========
+
+   * Nikolaj Zamotaev
+
+   (C)  STC-Metrotek, 2010-2011
+
